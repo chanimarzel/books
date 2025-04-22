@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חני מרזל - עולם של פלאים וערכים</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #fafafa;
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+            background-size: 20px 20px;
+            line-height: 1.6;
+        }
+        .book-card {
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+        .book-card:hover {
+            transform: translateY(-8px);
+        }
+        .book-image {
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+        .title-font {
+            font-family: 'Rubik', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        .card-pink {
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 100%);
+        }
+        .card-sky {
+            background: linear-gradient(135deg, #b0e0e6 0%, #87ceeb 100%);
+        }
+        .card-mint {
+            background: linear-gradient(135deg, #98ff98 0%, #90ee90 100%);
+        }
+        .card-yellow {
+            background: linear-gradient(135deg, #fffacd 0%, #ffefd5 100%);
+        }
+        .card-lavender {
+            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 100%);
+        }
+        .action-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .book-title {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        .book-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-pink-100 to-purple-100 py-16 px-4 text-center">
+        <h1 class="title-font text-4xl md:text-6xl font-bold text-gray-800 mb-4 leading-tight">חני מרזל מגישה: עולם של פלאים וערכים</h1>
+        <p class="text-xl text-gray-600 italic">דפדפו, חלמו בגדול, ולמדו לעומק</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Book 1 -->
+            <div class="book-card card-pink shadow-xl overflow-hidden">
+                <img src="haggadah-playmobil.png" alt="הגדה של פסח מפליימוביל" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">הגדה של פסח מפליימוביל</h2>
+                    <p class="book-description text-gray-700 mb-4">הסיפור של פסח מקבל חיים עם דמויות פליימוביל צבעוניות! כל שלב בסדר מקבל כאן הסבר פשוט, ידידותי ומשעשע למשפחות.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/azjg/index.html" class="action-button inline-block bg-white text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-pink-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card card-sky shadow-xl overflow-hidden">
+                <img src="libby-pesach.png" alt="Libby's Pesach Adventure" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">Libby's Pesach Adventure</h2>
+                    <p class="book-description text-gray-700 mb-4">ליבי שואלת שאלות גדולות על הגאולה ובאה המשיח — ומגלה תשובות קסומות בגן החיות. סיפור חם על תקווה, אמונה ודמיון.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/brgp/" class="action-button inline-block bg-white text-sky-600 px-6 py-3 rounded-full font-semibold hover:bg-sky-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="book-card card-mint shadow-xl overflow-hidden">
+                <img src="tzipi-expectation.png" alt="הציפיה של ציפי" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">הציפיה של ציפי</h2>
+                    <p class="book-description text-gray-700 mb-4">איך נראית ציפייה אמיתית למשיח? ציפי יוצאת למסע מלא חלומות, מעשים טובים ותפילות שקטות. סיפור עדין ומעורר השראה.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/jtie" class="action-button inline-block bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 4 -->
+            <div class="book-card card-yellow shadow-xl overflow-hidden">
+                <img src="dini-dani-exodus.png" alt="דיני ודני יוצאים ממצרים" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">דיני ודני יוצאים ממצרים</h2>
+                    <p class="book-description text-gray-700 mb-4">הצטרפו אל דיני ודני במסע הגדול ממצרים! סיפור חי וידידותי לילדים על יציאת מצרים, עם איורים שממש מרגישים כמו חג.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/hitp/index.html" class="action-button inline-block bg-white text-yellow-600 px-6 py-3 rounded-full font-semibold hover:bg-yellow-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 5 -->
+            <div class="book-card card-lavender shadow-xl overflow-hidden">
+                <img src="sheep-in-the-garden.png" alt="הכבשה שהלכה לבד לגינה" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">הכבשה שהלכה לבד לגינה</h2>
+                    <p class="book-description text-gray-700 mb-4">סיפור נוגע ללב על עצמאות, טעות והאהבה שלא מתערערת של אמא. מיוחד לכל ילד או ילדה שרוצים ללכת לבד – ולכל הורה שמחכה באהבה.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/qsvi/" class="action-button inline-block bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section class="bg-gradient-to-r from-pink-50 to-purple-50 py-16 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
+                <div class="w-full md:w-1/3 relative">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-yellow-200 rounded-full opacity-50"></div>
+                    <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-pink-200 rounded-full opacity-50"></div>
+                    <img src="chani-profile.jpg" alt="חני מרזל" class="relative rounded-2xl shadow-xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300" style="max-height: 400px;">
+                </div>
+                <div class="w-full md:w-2/3 text-right">
+                    <h2 class="title-font text-3xl font-bold text-gray-800 mb-4">חני מרזל – הבינה היצירתית</h2>
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">יוצרת, כותבת, ומפתחת תכנים שמעוררים השראה ומעבירים מסר.</p>
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">מומחית באסטרטגיה, תוכן וחינוך יצירתי, ומאמינה בכוח של סיפור טוב לפתוח לבבות ולהעביר ערכים.</p>
+                    <p class="text-lg text-gray-600 italic leading-relaxed">מוזמנים להיכנס, לקרוא – ולהתחבר.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            <p>© חני מרזל – הבינה היצירתית | כל הזכויות שמורות</p>
+        </div>
+    </footer>
+</body>
+</html> 
