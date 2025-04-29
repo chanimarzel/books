@@ -9,9 +9,7 @@
     <style>
         body {
             font-family: 'Heebo', sans-serif;
-            background-color: #fafafa;
-            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-color: #FDF6F0;
             line-height: 1.6;
         }
         .book-card {
@@ -22,28 +20,38 @@
             transform: translateY(-8px);
         }
         .book-image {
-            height: 300px;
+            height: 280px;
             object-fit: cover;
-            border-radius: 20px 20px 0 0;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+        .book-card:hover .book-image {
+            transform: scale(1.05);
         }
         .title-font {
             font-family: 'Rubik', sans-serif;
             letter-spacing: -0.5px;
         }
-        .card-pink {
-            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 100%);
-        }
         .card-sky {
-            background: linear-gradient(135deg, #b0e0e6 0%, #87ceeb 100%);
+            background: linear-gradient(135deg, #D7ECFA 0%, #c5e3f8 100%);
         }
         .card-mint {
-            background: linear-gradient(135deg, #98ff98 0%, #90ee90 100%);
+            background: linear-gradient(135deg, #D9F8E6 0%, #c5f0d9 100%);
         }
-        .card-yellow {
-            background: linear-gradient(135deg, #fffacd 0%, #ffefd5 100%);
+        .card-pink {
+            background: linear-gradient(135deg, #FFE3EC 0%, #ffd5e3 100%);
         }
-        .card-lavender {
-            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 100%);
+        .card-orange {
+            background: linear-gradient(135deg, #FFE5B4 0%, #ffdba3 100%);
+        }
+        .card-purple {
+            background: linear-gradient(135deg, #E9D8FD 0%, #dcc6f9 100%);
+        }
+        .card-blue {
+            background: linear-gradient(135deg, #DCE5F2 0%, #cbd8e9 100%);
+        }
+        .card-green {
+            background: linear-gradient(135deg, #E2F7D4 0%, #d1eec0 100%);
         }
         .action-button {
             transition: all 0.3s ease;
@@ -62,6 +70,10 @@
             font-size: 1.1rem;
             line-height: 1.7;
         }
+        .profile-image {
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -75,60 +87,84 @@
     <main class="container mx-auto px-4 py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Book 1 -->
-            <div class="book-card card-pink shadow-xl overflow-hidden">
+            <div class="book-card card-sky shadow-xl overflow-hidden">
                 <img src="haggadah-playmobil.png" alt="הגדה של פסח מפליימוביל" class="book-image w-full">
                 <div class="p-6">
                     <h2 class="book-title text-2xl text-gray-800 mb-3">הגדה של פסח מפליימוביל</h2>
-                    <p class="book-description text-gray-700 mb-4">הסיפור של פסח מקבל חיים עם דמויות פליימוביל צבעוניות! כל שלב בסדר מקבל כאן הסבר פשוט, ידידותי ומשעשע למשפחות.</p>
-                    <a href="https://online.fliphtml5.com/lcesa/azjg/index.html" class="action-button inline-block bg-white text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-pink-50 transition-colors">
+                    <p class="book-description text-gray-700 mb-4">הסיפור של פסח מקבל חיים עם דמויות פליימוביל צבעוניות! כל שלב בסדר מוסבר בצורה חווייתית לכל המשפחה.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/azjg/index.html" class="action-button inline-block bg-white text-sky-600 px-6 py-3 rounded-full font-semibold hover:bg-sky-50 transition-colors">
                         📖 לצפייה בספרון
                     </a>
                 </div>
             </div>
 
             <!-- Book 2 -->
-            <div class="book-card card-sky shadow-xl overflow-hidden">
+            <div class="book-card card-mint shadow-xl overflow-hidden">
                 <img src="libby-pesach.png" alt="Libby's Pesach Adventure" class="book-image w-full">
                 <div class="p-6">
                     <h2 class="book-title text-2xl text-gray-800 mb-3">Libby's Pesach Adventure</h2>
-                    <p class="book-description text-gray-700 mb-4">ליבי שואלת שאלות גדולות על הגאולה ובאה המשיח — ומגלה תשובות קסומות בגן החיות. סיפור חם על תקווה, אמונה ודמיון.</p>
-                    <a href="https://online.fliphtml5.com/lcesa/brgp/" class="action-button inline-block bg-white text-sky-600 px-6 py-3 rounded-full font-semibold hover:bg-sky-50 transition-colors">
+                    <p class="book-description text-gray-700 mb-4">מסע קסום בעקבות הגאולה – דרך עיניה הסקרניות של ליבי בגן החיות. סיפור על תקווה, אמונה ודמיון.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/brgp/" class="action-button inline-block bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors">
                         📖 לצפייה בספרון
                     </a>
                 </div>
             </div>
 
             <!-- Book 3 -->
-            <div class="book-card card-mint shadow-xl overflow-hidden">
+            <div class="book-card card-pink shadow-xl overflow-hidden">
                 <img src="tzipi-expectation.png" alt="הציפיה של ציפי" class="book-image w-full">
                 <div class="p-6">
                     <h2 class="book-title text-2xl text-gray-800 mb-3">הציפיה של ציפי</h2>
-                    <p class="book-description text-gray-700 mb-4">איך נראית ציפייה אמיתית למשיח? ציפי יוצאת למסע מלא חלומות, מעשים טובים ותפילות שקטות. סיפור עדין ומעורר השראה.</p>
-                    <a href="https://online.fliphtml5.com/lcesa/jtie" class="action-button inline-block bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors">
+                    <p class="book-description text-gray-700 mb-4">מסע קטן עם חלומות גדולים – ציפי לומדת לצפות לגאולה באהבה ובמעשה טוב.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/jtie" class="action-button inline-block bg-white text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-pink-50 transition-colors">
                         📖 לצפייה בספרון
                     </a>
                 </div>
             </div>
 
             <!-- Book 4 -->
-            <div class="book-card card-yellow shadow-xl overflow-hidden">
+            <div class="book-card card-orange shadow-xl overflow-hidden">
                 <img src="dini-dani-exodus.png" alt="דיני ודני יוצאים ממצרים" class="book-image w-full">
                 <div class="p-6">
                     <h2 class="book-title text-2xl text-gray-800 mb-3">דיני ודני יוצאים ממצרים</h2>
-                    <p class="book-description text-gray-700 mb-4">הצטרפו אל דיני ודני במסע הגדול ממצרים! סיפור חי וידידותי לילדים על יציאת מצרים, עם איורים שממש מרגישים כמו חג.</p>
-                    <a href="https://online.fliphtml5.com/lcesa/hitp/index.html" class="action-button inline-block bg-white text-yellow-600 px-6 py-3 rounded-full font-semibold hover:bg-yellow-50 transition-colors">
+                    <p class="book-description text-gray-700 mb-4">הצטרפו למסע המרגש של דיני ודני ממצרים – סיפור ילדים מלא חום וחוויה יהודית.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/hitp/index.html" class="action-button inline-block bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-orange-50 transition-colors">
                         📖 לצפייה בספרון
                     </a>
                 </div>
             </div>
 
             <!-- Book 5 -->
-            <div class="book-card card-lavender shadow-xl overflow-hidden">
+            <div class="book-card card-purple shadow-xl overflow-hidden">
                 <img src="sheep-in-the-garden.png" alt="הכבשה שהלכה לבד לגינה" class="book-image w-full">
                 <div class="p-6">
                     <h2 class="book-title text-2xl text-gray-800 mb-3">הכבשה שהלכה לבד לגינה</h2>
-                    <p class="book-description text-gray-700 mb-4">סיפור נוגע ללב על עצמאות, טעות והאהבה שלא מתערערת של אמא. מיוחד לכל ילד או ילדה שרוצים ללכת לבד – ולכל הורה שמחכה באהבה.</p>
+                    <p class="book-description text-gray-700 mb-4">סיפור נוגע ללב על עצמאות, אהבה וביטחון רגשי – לכל ילד קטן שחולם ללכת לבד.</p>
                     <a href="https://online.fliphtml5.com/lcesa/qsvi/" class="action-button inline-block bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 6 -->
+            <div class="book-card card-blue shadow-xl overflow-hidden">
+                <img src="good-night-bambi.png" alt="לילה טוב במבי" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">לילה טוב במבי</h2>
+                    <p class="book-description text-gray-700 mb-4">במבי הקטן מגלה את סוד השינה בזמן – ויוצא ליום נפלא עם כוחות מחודשים. סיפור מתוק ומאיר לב.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/ebhn/" class="action-button inline-block bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                        📖 לצפייה בספרון
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 7 -->
+            <div class="book-card card-green shadow-xl overflow-hidden">
+                <img src="well-done-efi.png" alt="כל הכבוד אפי" class="book-image w-full">
+                <div class="p-6">
+                    <h2 class="book-title text-2xl text-gray-800 mb-3">כל הכבוד אפי</h2>
+                    <p class="book-description text-gray-700 mb-4">סיפור על אומץ וביטחון עצמי – איך גם אפרוח קטן כמו אפי לומד לסמוך על עצמו בכל מקום.</p>
+                    <a href="https://online.fliphtml5.com/lcesa/ttxl/" class="action-button inline-block bg-white text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors">
                         📖 לצפייה בספרון
                     </a>
                 </div>
@@ -140,16 +176,13 @@
     <section class="bg-gradient-to-r from-pink-50 to-purple-50 py-16 mt-12">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
-                <div class="w-full md:w-1/3 relative">
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-yellow-200 rounded-full opacity-50"></div>
-                    <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-pink-200 rounded-full opacity-50"></div>
-                    <img src="chani-profile.jpg" alt="חני מרזל" class="relative rounded-2xl shadow-xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300" style="max-height: 400px;">
+                <div class="w-full md:w-1/3">
+                    <img src="chani-profile.jpg" alt="חני מרזל" class="profile-image w-48 h-48 mx-auto object-cover">
                 </div>
                 <div class="w-full md:w-2/3 text-right">
                     <h2 class="title-font text-3xl font-bold text-gray-800 mb-4">חני מרזל – הבינה היצירתית</h2>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">יוצרת, כותבת, ומפתחת תכנים שמעוררים השראה ומעבירים מסר.</p>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">מומחית באסטרטגיה, תוכן וחינוך יצירתי, ומאמינה בכוח של סיפור טוב לפתוח לבבות ולהעביר ערכים.</p>
-                    <p class="text-lg text-gray-600 italic leading-relaxed">מוזמנים להיכנס, לקרוא – ולהתחבר.</p>
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">יוצרת ומפתחת עולמות של דמיון וערכים, מתוך אהבה לחינוך ולסיפורים שמחברים בין הלבבות.</p>
+                    <p class="text-lg text-gray-600 italic leading-relaxed">מאמינה בכוח של סיפור פשוט לגעת ולהאיר.</p>
                 </div>
             </div>
         </div>
