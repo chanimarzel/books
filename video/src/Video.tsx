@@ -4,7 +4,7 @@ import '@fontsource/assistant/600.css';
 import '@fontsource/assistant/800.css';
 import React from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame} from 'remotion';
-import {C, FONT} from './elements';
+import {Grain, P, PaperDefs, Strip, wrap} from './paper';
 import {
   SceneBereishit,
   SceneBot,
@@ -17,7 +17,7 @@ import {
   SceneTable,
   SceneTree,
   SceneTwelve,
-} from './scenes';
+} from './scenesPaper';
 import {
   ALL_CHUNKS,
   END_CARD_START,
@@ -81,44 +81,33 @@ const Captions: React.FC = () => {
   });
   if (idx < 0) return null;
   const c = ALL_CHUNKS[idx];
-  const o = interpolate(t, [c.start, c.start + 0.15], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const o = interpolate(t, [c.start, c.start + 0.12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const lines = wrap(c.text, 22);
+  const rot = idx % 2 ? 1 : -1;
   return (
-    <div
-      style={{
-        position: 'absolute',
-        left: 90,
-        right: 90,
-        top: 1330,
-        display: 'flex',
-        justifyContent: 'center',
-        opacity: o,
-      }}
-    >
-      <div
-        style={{
-          direction: 'rtl',
-          unicodeBidi: 'plaintext',
-          textAlign: 'center',
-          fontFamily: FONT,
-          fontWeight: 600,
-          fontSize: 58,
-          lineHeight: 1.3,
-          color: '#fffaf0',
-          background: 'rgba(18, 11, 7, 0.55)',
-          padding: '14px 34px 18px',
-          borderRadius: 22,
-          textShadow: '0 2px 10px rgba(0,0,0,0.6)',
-        }}
-      >
-        {c.text}
-      </div>
-    </div>
+    <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: o}}>
+      <PaperDefs />
+      {lines.map((l, i) => (
+        <Strip
+          key={i}
+          text={l}
+          y={1420 + i * 92 - (lines.length - 1) * 30}
+          size={56}
+          bg={P.cream}
+          color={P.navy}
+          rot={rot * (i % 2 ? -0.8 : 1)}
+          seed={`cap-${idx}-${i}`}
+          padX={26}
+          padY={12}
+        />
+      ))}
+    </svg>
   );
 };
 
 export const Video: React.FC = () => {
   return (
-    <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 40%, ${C.bg2} 0%, ${C.bg} 70%)`}}>
+    <AbsoluteFill style={{background: P.kraft}}>
       {SCENES.map((s, i) => {
         const from = Math.max(0, s.from - (i === 0 ? 0 : OVERLAP / 2));
         const to = Math.min(sec(TOTAL_SECONDS), s.to + OVERLAP / 2);
@@ -129,6 +118,7 @@ export const Video: React.FC = () => {
         );
       })}
       <Captions />
+      <Grain />
       {NARRATION_FILE && (
         <Sequence from={sec(NARRATION_OFFSET)} layout="none">
           <Audio src={staticFile(NARRATION_FILE)} />
