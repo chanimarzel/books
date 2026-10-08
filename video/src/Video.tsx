@@ -3,7 +3,8 @@ import '@fontsource/assistant/400.css';
 import '@fontsource/assistant/600.css';
 import '@fontsource/assistant/800.css';
 import React from 'react';
-import {AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Audio, Sequence, getInputProps, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {CoverContract} from './cover';
 import {Grain, P, PaperDefs, Strip, wrap} from './paper';
 import {
   SceneBereishit,
@@ -105,6 +106,18 @@ const Captions: React.FC = () => {
   );
 };
 
+// Cover shown on the first frames so every platform picks it as the thumbnail.
+const COVER_FRAMES = 20;
+const CoverIntro: React.FC = () => {
+  const frame = useCurrentFrame();
+  const o = interpolate(frame, [COVER_FRAMES - 8, COVER_FRAMES], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{opacity: o}}>
+      <CoverContract />
+    </AbsoluteFill>
+  );
+};
+
 export const Video: React.FC = () => {
   return (
     <AbsoluteFill style={{background: P.kraft}}>
@@ -119,6 +132,11 @@ export const Video: React.FC = () => {
       })}
       <Captions />
       <Grain />
+      {getInputProps().cover !== false && (
+        <Sequence from={0} durationInFrames={COVER_FRAMES} layout="none">
+          <CoverIntro />
+        </Sequence>
+      )}
       {NARRATION_FILE && (
         <Sequence from={sec(NARRATION_OFFSET)} layout="none">
           <Audio src={staticFile(NARRATION_FILE)} />
