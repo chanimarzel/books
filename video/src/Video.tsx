@@ -18,7 +18,18 @@ import {
   SceneTree,
   SceneTwelve,
 } from './scenes';
-import {END_CARD_START, FPS, LINES, MUSIC_FILE, NARRATION_FILE, TOTAL_SECONDS, sec} from './timeline';
+import {
+  ALL_CHUNKS,
+  END_CARD_START,
+  FPS,
+  LINES,
+  MUSIC_FILE,
+  NARRATION_FILE,
+  NARRATION_OFFSET,
+  TOTAL_SECONDS,
+  chunkAt,
+  sec,
+} from './timeline';
 
 const OVERLAP = 10; // crossfade frames between scenes
 
@@ -29,7 +40,21 @@ type Scene = {from: number; to: number; render: (from: number) => React.ReactNod
 
 const SCENES: Scene[] = [
   {from: 0, to: L(1), render: () => <SceneTable />},
-  {from: L(1), to: L(2), render: () => <SceneContract />},
+  {
+    from: L(1),
+    to: L(2),
+    render: (f) => (
+      <SceneContract
+        at={[
+          sec(chunkAt('פעם בחודש').start) - f,
+          sec(chunkAt('פעם בחודש').start + 0.9) - f,
+          sec(chunkAt('במתנה').start) - f,
+          sec(chunkAt('בלי למכור').start) - f,
+        ]}
+        sign={sec(chunkAt('רק לתת').start) - f}
+      />
+    ),
+  },
   {from: L(2), to: L(4), render: (f) => <SceneCount split={sec(LINES[3].start) - f} />},
   {from: L(4), to: L(6), render: (f) => <SceneOne split={sec(LINES[5].start) - f} />},
   {from: L(6), to: L(7), render: () => <SceneBot />},
@@ -38,33 +63,12 @@ const SCENES: Scene[] = [
   {
     from: L(9),
     to: L(10),
-    // Rewind starts at the third caption chunk ("וחזרתי שנה אחורה").
-    render: (f) => <SceneShare split={chunkStart(9, 2) - f} />,
+    render: (f) => <SceneShare split={sec(chunkAt('וחזרתי').start) - f} />,
   },
   {from: L(10), to: L(11), render: () => <SceneBereishit />},
   {from: L(11), to: sec(END_CARD_START), render: (f) => <SceneChair split={sec(LINES[12].start) - f} />},
   {from: sec(END_CARD_START), to: sec(TOTAL_SECONDS), render: () => <SceneEnd />},
 ];
-
-// Split a line into caption chunks and give each a share of the line's time.
-const chunksOf = (i: number) => {
-  const line = LINES[i];
-  const parts = line.chunks ?? [line.text];
-  const total = parts.reduce((a, p) => a + p.length, 0);
-  let t = line.start;
-  return parts.map((p) => {
-    const dur = ((line.end - line.start) * p.length) / total;
-    const c = {text: p, start: t, end: t + dur};
-    t += dur;
-    return c;
-  });
-};
-
-function chunkStart(line: number, chunk: number) {
-  return sec(chunksOf(line)[chunk].start);
-}
-
-const ALL_CHUNKS = LINES.flatMap((_, i) => chunksOf(i));
 
 const Captions: React.FC = () => {
   const frame = useCurrentFrame();
@@ -125,8 +129,12 @@ export const Video: React.FC = () => {
         );
       })}
       <Captions />
-      {NARRATION_FILE && <Audio src={staticFile(NARRATION_FILE)} />}
-      {MUSIC_FILE && <Audio src={staticFile(MUSIC_FILE)} volume={NARRATION_FILE ? 0.35 : 0.8} />}
+      {NARRATION_FILE && (
+        <Sequence from={sec(NARRATION_OFFSET)} layout="none">
+          <Audio src={staticFile(NARRATION_FILE)} />
+        </Sequence>
+      )}
+      {MUSIC_FILE && <Audio src={staticFile(MUSIC_FILE)} volume={NARRATION_FILE ? 0.22 : 0.8} />}
     </AbsoluteFill>
   );
 };

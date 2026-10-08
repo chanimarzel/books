@@ -84,13 +84,11 @@ export const SceneTable: React.FC = () => {
 };
 
 // 2. The contract.
-export const SceneContract: React.FC = () => {
+export const SceneContract: React.FC<{at: number[]; sign: number}> = ({at, sign: signAt}) => {
   const frame = useCurrentFrame();
-  const {durationInFrames: d} = useVideoConfig();
   const o = useSceneFade();
   const items = ['פעם בחודש', 'שעתיים איתי', 'במתנה', 'בלי למכור. רק לתת.'];
-  const at = [0.2, 0.32, 0.44, 0.72].map((p) => Math.round(d * p));
-  const sign = interpolate(frame, [d * 0.82, d * 0.95], [0, 1], clamp);
+  const sign = interpolate(frame, [signAt, signAt + 18], [0, 1], clamp);
   return (
     <AbsoluteFill style={{opacity: o}}>
       <Svg>
@@ -109,10 +107,10 @@ export const SceneContract: React.FC = () => {
         <line x1={280} y1={1100} x2={800} y2={1100} stroke="#b08a55" strokeWidth={2} />
       </Svg>
       <Title y={440} size={74} weight={800} color="#4a2c14" o={appear(frame, 0, 16)}>
-        חוזה
+        חוזה שת״פ
       </Title>
-      <Title y={510} size={34} weight={400} color="#8a6034" o={appear(frame, 6, 16)}>
-        שיתוף פעולה עם הקב״ה
+      <Title y={520} size={40} weight={600} color="#8a6034" o={appear(frame, 6, 16)}>
+        עם הקב״ה
       </Title>
       {items.map((t, i) => (
         <Title
@@ -245,7 +243,7 @@ export const SceneTree: React.FC = () => {
   const nodes: {x: number; y: number; lvl: number; px?: number; py?: number}[] = [];
   for (let l = 0; l < levels; l++) {
     const count = 2 ** l;
-    const y = 1180 - l * 120;
+    const y = 1180 - l * 100;
     for (let k = 0; k < count; k++) {
       const x = 540 + ((k + 0.5) / count - 0.5) * (120 + l * 140);
       const parent = l === 0 ? undefined : nodes[2 ** (l - 1) - 1 + Math.floor(k / 2)];
@@ -402,14 +400,14 @@ export const SceneChair: React.FC<{split: number}> = ({split}) => {
       <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 60%'}}>
         <Svg>
           <circle cx={540} cy={800} r={560} fill="url(#halo)" opacity={0.35} />
-          <Chair x={720} y={1060} scale={1.05} o={appear(frame, 4, 24)} />
+          <Chair x={720} y={1060} scale={0.95} o={appear(frame, 4, 24)} />
           <Table y={1000} />
           <Cup x={360} y={1060} scale={1.1} seed={5} />
           <Cup x={720} y={1060} scale={1.1} seed={6} steam={appear(frame, 10, 30)} />
           <Candle x={540} y={1060} scale={1.0} height={200} lit={1} seed={7} />
         </Svg>
       </AbsoluteFill>
-      <Title y={430} size={110} weight={800} glow o={q} dy={(1 - q) * 20}>
+      <Title y={360} size={110} weight={800} glow o={q} dy={(1 - q) * 20}>
         אולי זו את?
       </Title>
       <Vignette />

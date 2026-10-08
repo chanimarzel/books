@@ -174,8 +174,7 @@ export const Cup: React.FC<{x: number; y: number; scale?: number; steam?: number
 // Table: a warm wooden surface seen at a low angle.
 export const Table: React.FC<{y: number; o?: number}> = ({y, o = 1}) => (
   <g opacity={o}>
-    <ellipse cx={540} cy={y + 30} rx={620} ry={120} fill="#000" opacity={0.35} />
-    <path d={`M -40 ${y} L 1120 ${y} L 1120 ${y + 520} L -40 ${y + 520} Z`} fill="url(#table)" />
+    <path d={`M -40 ${y} L 1120 ${y} L 1120 ${y + 1000} L -40 ${y + 1000} Z`} fill="url(#table)" />
     <rect x={-40} y={y - 6} width={1160} height={12} fill={C.woodLight} />
     {[0, 1, 2, 3].map((i) => (
       <path
