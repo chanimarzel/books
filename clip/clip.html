@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>קול ברמה נשמע</title>
+<style>
+  @font-face { font-family: 'Assistant'; font-weight: 400; src: url(fonts/Assistant-Regular.ttf); }
+  @font-face { font-family: 'Assistant'; font-weight: 600; src: url(fonts/Assistant-SemiBold.ttf); }
+  @font-face { font-family: 'Assistant'; font-weight: 700; src: url(fonts/Assistant-Bold.ttf); }
+  @font-face { font-family: 'Assistant'; font-weight: 800; src: url(fonts/Assistant-ExtraBold.ttf); }
+  :root {
+    --purple: #7E5499; --purple-deep: #4E2F63; --yellow: #FCCD59; --cream: #FFF8F2; --pink: #FFE6F3;
+    --shadow: rgba(78, 47, 99, .16);
+  }
+  html, body { margin: 0; padding: 0; background: var(--cream); overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--cream);
+    font-family: 'Assistant', sans-serif; color: var(--purple-deep); }
+  body.f9x16 #stage { width: 1080px; height: 1920px; }
+  .layer { position: absolute; inset: 0; }
+  .a { position: absolute; left: 0; top: 0; will-change: transform, opacity; visibility: hidden; }
+  .a svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .prop { filter: drop-shadow(0 10px 14px var(--shadow)) drop-shadow(0 2px 3px rgba(78,47,99,.12)); }
+  .shadow { background: radial-gradient(closest-side, rgba(78,47,99,.22), rgba(78,47,99,0)); border-radius: 50%; }
+
+  /* paper */
+  #paper { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .35  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; z-index: 50; pointer-events: none; }
+  #fibres { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .09' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .3  0 0 0 0 .5  0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
+    mix-blend-mode: multiply; z-index: 51; pointer-events: none; }
+  #wash { z-index: 0; }
+  #vignette { z-index: 52; background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 58%, rgba(78,47,99,.10) 100%); pointer-events: none; }
+
+  /* table band */
+  #table { width: 2200px; height: 330px; border-radius: 50% 50% 0 0 / 22px 22px 0 0; background: var(--pink);
+    box-shadow: 0 -6px 18px rgba(78,47,99,.08) inset, 0 -2px 0 rgba(126,84,153,.10); }
+
+  /* lyrics */
+  .lyric { white-space: nowrap; font-weight: 800; font-size: 72px; line-height: 1.1; color: var(--purple-deep);
+    text-align: center; direction: rtl; letter-spacing: -.5px; }
+  .lyric .w { display: inline-block; will-change: transform, opacity; }
+  .lyric .w + .w { margin-right: .26em; }
+  .lyric .hl { color: var(--purple); }
+  .pill { background: var(--yellow); border-radius: 999px; }
+
+  .bigword { white-space: nowrap; font-weight: 800; color: var(--purple); direction: rtl; text-align: center; line-height: 1; }
+
+  #bh { position: absolute; top: 48px; right: 64px; font-weight: 600; font-size: 30px; color: var(--purple); z-index: 60; letter-spacing: .5px; }
+  body.f9x16 #bh { top: 80px; right: 56px; }
+
+  .bubbleText { position: absolute; inset: 0 0 13% 0; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: var(--purple-deep); direction: rtl; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="wash"></div>
+  <div class="layer" id="world"></div>
+  <div class="layer" id="front"></div>
+  <div class="layer" id="paper"></div>
+  <div class="layer" id="fibres"></div>
+  <div class="layer" id="vignette"></div>
+  <div id="bh">ב״ה</div>
+</div>
+<script src="src/assets.js"></script>
+<script src="src/engine.js"></script>
+<script src="src/timing.js"></script>
+<script src="src/scenes.js"></script>
+</body>
+</html>
